@@ -1,0 +1,79 @@
+form{
+    border-radius: .3rem;
+    border: 2px solid #333;
+    width: 90%;
+    max-width: 20rem;
+    display: flex;
+    flex-flow: column nowrap;
+    gap:1.25rem;
+    padding: 1.5rem .75rem;
+}
+
+form h2{
+    font-size: 2rem;
+    margin-bottom: .57rem;
+}
+
+.input-field{
+    position: relative;
+}
+.input-field input{
+    padding: .75rem .25rem;
+    outline: none;
+    border: solid 2px gray;
+    border-radius: .3rem;
+    width: 100%;
+    height: 100%;
+    font-size: medium;
+    background-color: transparent;
+}
+.input-field label{
+    position: absolute;
+    top: 50%;
+    color: gray;
+    transform: translateY(-50%);
+    left: .5rem;   
+    z-index: -1;
+    transition: all .3s ease-in-out;
+}
+.input-field input:is(:valid,:focus){
+    border-color: #333;
+}
+.input-field input:is(:valid,:focus)~label{
+    z-index: 0;
+    top: 0;
+    color: #333;
+    background-color: white;
+    font-size: .75rem;
+    padding: 0 .2rem;
+}
+
+form input[type='submit']{
+    padding: .75rem .25rem;
+    background-color: #444;
+    font-size: medium;
+    font-weight: 500;
+    border-radius: .3rem;
+    color: #eee;
+    outline: none;
+    border: none;
+    margin-top: .5rem;
+}
+
+.sep{
+    height: .15rem;
+    width: 100%;
+    background-color: #333;
+    border-radius: 50px;
+    margin:.25rem 0;
+}
+
+.signup{
+    font-size: .85rem;
+    text-align: center;
+
+    & a,a:visited{
+       color: black; 
+       font-weight: 600;
+    }
+}

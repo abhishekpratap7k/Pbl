@@ -1,0 +1,29 @@
+{% extends "base.html" %} 
+{% load static %}
+{% block title %} 
+Login 
+{% endblock title %} 
+{% block style-link %} 
+
+<link rel="stylesheet" href="{% static 'form.css' %}">
+<link rel="stylesheet" href="{% static 'otp.css' %}">
+{% endblock style-link %} 
+
+{% block content %}
+
+<form action="" method="post">
+  {% csrf_token %}
+  <h2>OTP Verification</h2>
+  <div class="input-field">
+    <input type="number" spellcheck="false" required maxlenght='8' />
+    <label>Enter OTP</label>
+  </div>
+  <div class="submit-field">
+      <a href="" class='cancle'>Cancel</a>
+      <input type="submit" value="Enter" />
+
+  </div>
+</form>
+{% endblock content %}
+
+
