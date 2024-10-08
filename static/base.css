@@ -28,3 +28,10 @@ header {
     display: grid;
     place-items: center;
 }
+
+@media (max-width: 768px) {
+    header,.container{
+        padding: 0 2rem;
+    }
+    
+}
