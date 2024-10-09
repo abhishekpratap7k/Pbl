@@ -14,15 +14,15 @@ Login
   {% csrf_token %}
   <h2>Sign Up</h2>
   <div class="input-field">
-    <input type="text" spellcheck="false" required />
+    <input name='username' type="text" spellcheck="false" required />
     <label>Username</label>
   </div>
   <div class="input-field">
-    <input type="password" required />
+    <input name='password' type="password" required />
     <label>Password</label>
   </div>
   <div class="input-field">
-    <input type="password" required />
+    <input name='confirm_password' type="password" required />
     <label>Confirm Password</label>
   </div>
   <input type="submit" value="Sign Up" />

@@ -19,10 +19,16 @@ from django.urls import path,include
 from . import views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('',views.login,name='Login'),
-    path('SignUp',views.signup,name='Signup'),
-    path('OTP',views.otp,name='Otp'),
-
-    path('__reload__',include('django_browser_reload.urls') ),
+    path("admin/", admin.site.urls, name="admin"),
+    path("", views.index, name="index"),
+    path("Dashboard", views.dashboard, name="Dashboard"),
+    path("Login", views.login_view, name="Login"),
+    path("Logout", views.logout_view, name="Logout"),
+    path("SignUp", views.signup, name="Signup"),
+    path("OTP", views.otp, name="Otp"),
+    path("__reload__", include("django_browser_reload.urls")),
 ]
+
+admin.site.site_title="PBL"
+admin.site.site_header="PBL Admin Page"
+admin.site.index_title="Available Data Tables"
