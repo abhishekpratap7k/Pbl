@@ -1,30 +1,39 @@
 {% extends "base.html" %} 
 {% load static %}
 {% block title %} 
-Login 
+Dashboard 
 {% endblock title %} 
 {% block style-link %} 
 
-<link rel="stylesheet" href="{% static 'form.css' %}">
+<link rel="stylesheet" href="{% static 'card.css' %}">
 {% endblock style-link %} 
+
+{% block navbarOptions %}
+{% if request.user.is_authenticated %}
+<li><a href="{% url "Logout" %}">Logout</a></li>
+{% if isAdmin %}
+<li><a href="admin">Admin</a></li>
+{% endif %}
+{% else %}
+<li><a href="{% url "Login" %}">Login</a></li>
+{% endif %}
+{% endblock navbarOptions %}
+
 
 {% block content %}
 
-<form action="" method="post">
-  {% csrf_token %}
-  <h2>Login</h2>
-  <div class="input-field">
-    <input type="text" spellcheck="false" required />
-    <label>Username</label>
+<div class="card">
+  <div class="message">
+    {% if request.user.is_authenticated %}
+    <h2>Hello👋, <span>{{ request.user.username }}</span> !!</h2>
+    <h1>Welcome to the Dashboard!</h1>
+    {% else %}
+    <h2>Welcome to the Dashboard!</h2>
+    <h1>You are not Login yet!!</h1>
+    {% endif %}
+    
   </div>
-  <div class="input-field">
-    <input type="password" required />
-    <label>Password</label>
-  </div>
-  <input type="submit" value="Login" />
-  <div class="sep"></div>
-  <p class="signup">Dont have an account? <a href="{% url "Signup" %}">Sign up</a></p>
-</form>
+</div>
 {% endblock content %}
 
 

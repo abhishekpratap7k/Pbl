@@ -1,0 +1,30 @@
+.card{
+    width: 100%;
+    max-width: 45rem;
+    height: 22.5dvh;
+    border-radius: .75rem;
+    background-color: #f9f9f9;
+    box-shadow: 0 .5rem 5px 2px rgba(0, 0, 0, 0.1);
+    border: 2px solid #ddd;
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+
+    & h2{
+        font-size: 2.25vmax;
+        font-weight: normal;
+    }
+    & h1{
+        font-size: 2.75vmax;
+    }
+    & span{
+        text-decoration: underline;
+    }
+}
+
+.container{
+    place-items: start center;
+}
+

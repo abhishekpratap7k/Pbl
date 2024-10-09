@@ -1,0 +1,34 @@
+{% extends "base.html" %} 
+{% load static %}
+{% block title %} 
+Login 
+{% endblock title %} 
+{% block style-link %} 
+
+<link rel="stylesheet" href="{% static 'form.css' %}">
+{% endblock style-link %} 
+
+
+ 
+
+
+{% block content %}
+
+<form action="{% url "Login" %}" method="post">
+  {% csrf_token %}
+  <h2>Login</h2>
+  <div class="input-field">
+    <input name="username" type="text" spellcheck="false" required />
+    <label>Username</label>
+  </div>
+  <div class="input-field">
+    <input name="password" type="password" required />
+    <label>Password</label>
+  </div>
+  <input type="submit" value="Login" />
+  <div class="sep"></div>
+  <p class="signup">Dont have an account? <a href="{% url "Signup" %}">Sign up</a></p>
+</form>
+{% endblock content %}
+
+
