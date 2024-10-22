@@ -11,17 +11,16 @@ Login
 
 {% block content %}
 
-<form action="" method="post">
+<form method="post">
   {% csrf_token %}
   <h2>OTP Verification</h2>
   <div class="input-field">
-    <input type="number" spellcheck="false" required maxlenght='8' />
+    <input type="number" name='otp' minlenght='4' maxlenght='4' spellcheck="false" required maxlenght='8' />
     <label>Enter OTP</label>
   </div>
   <div class="submit-field">
       <a href="" class='cancle'>Cancel</a>
       <input type="submit" value="Enter" />
-
   </div>
 </form>
 {% endblock content %}

@@ -11,7 +11,7 @@ Dashboard
 {% block navbarOptions %}
 {% if request.user.is_authenticated %}
 <li><a href="{% url "Logout" %}">Logout</a></li>
-{% if isAdmin %}
+{% if request.user.is_staff %}
 <li><a href="admin">Admin</a></li>
 {% endif %}
 {% else %}
@@ -33,6 +33,7 @@ Dashboard
     {% endif %}
     
   </div>
+  <button class="btn">Activity Button</button>
 </div>
 {% endblock content %}
 
