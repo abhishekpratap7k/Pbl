@@ -24,10 +24,19 @@
     </header>
     <main>
         <div class="container">
+            {% if messages %}
+                {% for message in messages %}
+                    <div class=" {{ message.tags }} toast">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
             {% block content %}
             {% endblock content %}
         </div>
     </main>
     
 </body>
+
+<script src="{% static "auth.js" %}"></script>
 </html>

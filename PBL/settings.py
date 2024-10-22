@@ -40,7 +40,6 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "django_browser_reload",
     "django_session_timeout",
-    "MyUsers",
 ]
 
 MIDDLEWARE = [
@@ -117,6 +116,10 @@ USE_I18N = True
 
 USE_TZ = True
 
+LOGIN_URL = "/Login"
+LOGIN_REDIRECT_URL='/'
+LOGOUT_REDIRECT_URL='/'
+
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
@@ -131,6 +134,15 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Auto Logout Configeration
 
-SESSION_EXPIRE_SECONDS= 7
+SESSION_EXPIRE_SECONDS= (60*5) # 5 min 
 SESSION_EXPIRE_AFTER_LAST_ACTIVITY=True
 SESSION_TIMEOUT_REDIRECT = "/"
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'abhishekpratap5210@gmail.com'
+EMAIL_HOST_PASSWORD = 'xeyr pdzx vflq stnw'
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = "abhishekpratap5210@gmail.com"
