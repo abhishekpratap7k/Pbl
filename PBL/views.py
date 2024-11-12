@@ -12,6 +12,7 @@ import random
 def login_view(req):
     if req.method == "GET":
         return render(req, "login.html")
+    
     cred = req.POST
     username = cred.get("username", "")
     password = cred.get("password", "")
@@ -27,7 +28,6 @@ def login_view(req):
     login(req, user)
     messages.add_message(req, messages.INFO, "Login successful!")
     return redirect("Dashboard")
-
 
 
 def logout_view(req):
@@ -66,6 +66,7 @@ def signup(req):
             "OTP Verification", f"Your OTP is {otp}", settings.EMAIL_HOST_USER, [email]
         )
         req.session["otp"] = otp
+        req.session["email"] = email
         req.session["username"] = username
         req.session["password"] = password
         messages.add_message(req, messages.SUCCESS, "OTP sent at your email!")
@@ -75,11 +76,15 @@ def signup(req):
 
 def otp(req):
     if req.method == "GET":
+        print(req.GET.get("cancle"))
+        if req.GET.get("cancle") == "cancle":
+            return redirect("Signup")
         return render(req, "otp.html")
     if req.session.get("otp", "") != int(req.POST.get("otp", "")):
         messages.add_message(req, messages.ERROR, "Wrong OTP!")
         return redirect("Otp")
     user = User.objects.create_user(username=req.session.get("username", ""))
+    user.email= req.session.get('email',"")
     user.set_password(req.session.get("password", ""))
     user.save()
     messages.add_message(req, messages.SUCCESS, "Successfuly Signed Up")
@@ -92,7 +97,41 @@ def dashboard(req):
         return render(req, "index.html")
     return render(req, "index.html")
 
+def forgot_pass(req):
+    if req.method== 'GET':
+        return render(req,'forgot_pass.html')
+    email= req.POST.get('email','')
+
+    if not User.objects.filter(email=email).exists():
+        messages.add_message(req, messages.ERROR, "No email found")
+        return redirect("forgot_pass") 
+    otp = random.randint(1000, 9999)
+    send_mail(
+        "OTP Verification", f"Your OTP is {otp}", settings.EMAIL_HOST_USER, [email]
+    )
+    req.session["otp"] = otp
+    req.session["email"] = email
+    return redirect("forgot_pass_opt")
+
+def forgot_pass_opt(req):
+    if req.method== 'GET':
+        return render(req,'forgot_pass_opt.html')
+    if req.session.get("otp", "") != int(req.POST.get("otp", "")):
+        messages.add_message(req, messages.ERROR, "Wrong OTP!")
+        return redirect("forgot_pass_opt")
+    return redirect("password_change")
+
+def password_change(req):
+    if req.method== 'GET':
+        return render(req, "password_change.html")
+    new_pass = req.POST.get("password")
+    user = User.objects.get(email=req.session.get('email'))
+    user.set_password(new_pass)
+
+    user.save()
+    messages.add_message(req, messages.SUCCESS, "Successfuly Password changed")
+    return redirect("Login")
+
 
 def index(req):
-
     return redirect("Dashboard")

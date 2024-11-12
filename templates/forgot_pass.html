@@ -13,13 +13,13 @@ Login
 
 <form method="post">
   {% csrf_token %}
-  <h2>OTP Verification</h2>
+  <h2>Enter Your email</h2>
   <div class="input-field">
-    <input type="number" name='otp' minlenght='4' maxlenght='4' spellcheck="false" required maxlenght='8' />
-    <label>Enter OTP</label>
+    <input type="email" name='email' spellcheck="false" required/>
+    <label>Email</label>
   </div>
   <div class="submit-field">
-      <a href="{% url "Login" %}"  class='cancle'>Cancel</a>
+      <a href="{% url "Login" %}" class='cancle'>Cancel</a>
       <input type="submit" value="Enter" />
   </div>
 </form>

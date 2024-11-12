@@ -26,6 +26,9 @@ urlpatterns = [
     path("Logout", views.logout_view, name="Logout"),
     path("SignUp", views.signup, name="Signup"),
     path("OTP", views.otp, name="Otp"),
+    path("ForgotPassword", views.forgot_pass, name="forgot_pass"),
+    path("ForgotPasswordOTP", views.forgot_pass_opt, name="forgot_pass_opt"),
+    path("NewPassword", views.password_change, name="password_change"),
     path("__reload__", include("django_browser_reload.urls")),
 ]
 
